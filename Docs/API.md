@@ -1360,7 +1360,7 @@ mainMenu.DataContext = ctx
 
 #### Ext.UI.Box(value): BaseComponent
 
-Puts a Lua string, boolean or number in a Noesis box (`BoxedValue`), the way XAML passes a literal `CommandParameter`. Command parameters and object-typed properties only take Noesis objects; this is how a script passes them a plain value. Integers are boxed as `Int32` (out of that range: an error), other numbers as `Single`. Boxes are kept for the rest of the session (the same few values, e.g. event names, are reused), so this is meant for a small set of values such as event names, not for values that change every frame.
+Puts a Lua string, boolean or number in a Noesis box (`BoxedValue`), the way XAML passes a literal `CommandParameter`. Command parameters and object-typed properties only take Noesis objects; this is how a script passes them a plain value. Integers are boxed as `Int32` (out of that range: an error), other numbers as `Single`. The box is kept alive until the end of the frame; the UI keeps its own reference to a box it holds on to (e.g. when it is assigned to a property).
 
 Example: firing an event of the UI state machine, as a button with `Command="{Binding CustomEvent}" CommandParameter="OpenOptions"` does:
 ```lua
